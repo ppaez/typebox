@@ -8,3 +8,6 @@ int two_chars_to_byte(char * two_chars) {
  sscanf( two_chars, "%x", &byte );
  return byte;
 }
+
+void transfer_packet(int key_byte, int modifier_byte) {
+}
