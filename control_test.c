@@ -1,6 +1,8 @@
 #include <assert.h>
 #include <stdbool.h>
 
+#include "control.h"
+
 static void test_two_chars_to_byte() {
  int byte;
  byte = two_chars_to_byte("31");
@@ -8,6 +10,6 @@ static void test_two_chars_to_byte() {
 }
 
 int main(void) {
- assert( false && "First unit test" );
+ test_two_chars_to_byte();
  return(0);
 }
