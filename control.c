@@ -10,9 +10,13 @@ int two_chars_to_byte(char * two_chars) {
 }
 
 void shift_out_bit( int bit) {
+ pinMode(8, bit);
+ digitalWrite(8, 0);
 }
 
 void shift_in_bit( int bit) {
+ pinMode(8, bit);
+ digitalRead(8);
 }
 
 
