@@ -1,6 +1,11 @@
 #include <stdio.h>
 
 #include "control.h"
+#include <Arduino.h>
+
+#define CLOCK  8
+#define DATA   9
+#define BUSY  10
 
 int two_chars_to_byte(char * two_chars) {
  int byte;
@@ -10,8 +15,11 @@ int two_chars_to_byte(char * two_chars) {
 }
 
 void shift_out_bit( int bit) {
- pinMode(8, bit);
- digitalWrite(8, 0);
+ pinMode(DATA, OUTPUT);
+ digitalWrite(DATA, bit);
+ // wait
+ digitalWrite(CLOCK, LOW);
+ digitalWrite(CLOCK, HIGH);
 }
 
 void shift_in_bit( int bit) {
