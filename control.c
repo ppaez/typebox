@@ -37,7 +37,7 @@ void shift_out_bit( int bit) {
  digitalWrite(DATA, LOW);
 }
 
-void shift_in_bit( int pin) {
+void shift_in_bit() {
  int bit;
  while (digitalRead(BUSY)) {
   delay(1);
@@ -61,5 +61,5 @@ void transfer_packet(int key_byte, int modifier_byte) {
  for (i=0; i<8; i++) shift_out_bit(get_bit(key_byte, i));
  for (i=0; i<8; i++) shift_out_bit(get_bit(modifier_byte, i));
  for (i=0; i<3; i++) shift_out_bit(0);
- for (i=0; i<6; i++) shift_in_bit(bit);
+ for (i=0; i<6; i++) shift_in_bit();
 }

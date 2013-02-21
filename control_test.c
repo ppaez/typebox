@@ -51,7 +51,7 @@ void test_shift_out_bit() {
 void test_shift_in_bit() {
  pinMode_ncalled = 0;
  digitalRead_ncalled = 0;
- shift_in_bit(1);
+ shift_in_bit();
  assert( pinMode_ncalled != 0 && "test_shift_out_bit");
  assert( digitalRead_ncalled != 0 && "test_shift_out_bit");
 }
