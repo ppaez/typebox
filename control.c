@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "control.h"
-#include <Arduino.h>
+#include "control_test.h"
 
 #define CLOCK  8
 #define DATA   9
