@@ -15,7 +15,7 @@ int two_chars_to_byte(char * two_chars) {
 }
 
 int get_bit(int byte, int n) {
- return byte & 1 << n;
+ return (byte & 1 << n) != 0;
 }
 
 void shift_out_bit( int bit) {
