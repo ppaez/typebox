@@ -19,11 +19,22 @@ int get_bit(int byte, int n) {
 }
 
 void shift_out_bit( int bit) {
+ while (digitalRead(BUSY)) {
+  delay(1);
+ }
  pinMode(DATA, OUTPUT);
  digitalWrite(DATA, bit);
  delay(1);
  digitalWrite(CLOCK, LOW);
+ while (!digitalRead(BUSY)) {
+  delay(1);
+ }
  digitalWrite(CLOCK, HIGH);
+ while (digitalRead(BUSY)) {
+  delay(1);
+ }
+ pinMode(DATA, INPUT);
+ digitalWrite(DATA, LOW);
 }
 
 void shift_in_bit( int bit) {
