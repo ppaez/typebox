@@ -17,7 +17,7 @@ int two_chars_to_byte(char * two_chars) {
 void shift_out_bit( int bit) {
  pinMode(DATA, OUTPUT);
  digitalWrite(DATA, bit);
- // wait
+ delay(1);
  digitalWrite(CLOCK, LOW);
  digitalWrite(CLOCK, HIGH);
 }

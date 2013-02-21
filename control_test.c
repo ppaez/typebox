@@ -21,6 +21,9 @@ int digitalRead(uint8_t pin) {
  return 0;
 }
 
+void delay(unsigned long) {
+}
+
 static void test_two_chars_to_byte() {
  int byte;
  pinMode_ncalled = 0;
