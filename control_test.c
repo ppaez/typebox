@@ -19,7 +19,7 @@ void digitalWrite(uint8_t pin, uint8_t value) {
 
 int digitalRead(uint8_t pin) {
  digitalRead_ncalled++;
- return 0;
+ return digitalRead_ncalled % 2;
 }
 
 void delay(unsigned long miliseconds) {
