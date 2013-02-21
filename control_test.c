@@ -33,6 +33,14 @@ static void test_two_chars_to_byte() {
  assert( byte == 49 && "test_two_chars_to_byte" );
 }
 
+void test_get_bit() {
+ assert( get_bit(0xf1, 0) == 1 && "test_get_bit");
+ assert( get_bit(0xf1, 1) == 0 && "test_get_bit");
+ assert( get_bit(0xff, 2) == 0x04 && "test_get_bit");
+ assert( get_bit(0xf0, 2) == 0 && "test_get_bit");
+ assert( get_bit(0xff, 7) == 0x80 && "test_get_bit");
+}
+
 void test_shift_out_bit() {
  int bit = 0;
  shift_out_bit(bit);
@@ -50,6 +58,7 @@ void test_shift_in_bit() {
 
 int main(void) {
  test_two_chars_to_byte();
+ test_get_bit();
  test_shift_out_bit();
  test_shift_in_bit();
  return(0);

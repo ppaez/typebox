@@ -14,6 +14,10 @@ int two_chars_to_byte(char * two_chars) {
  return byte;
 }
 
+int get_bit(int byte, int n) {
+ return byte & 1 << n;
+}
+
 void shift_out_bit( int bit) {
  pinMode(DATA, OUTPUT);
  digitalWrite(DATA, bit);
