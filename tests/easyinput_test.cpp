@@ -25,6 +25,11 @@ int digitalRead(uint8_t pin) {
 void delay(unsigned long miliseconds) {
 }
 
+void test_init_easyinput() {
+ init_easyinput();
+ assert( 1 && "test_init_easyinput");
+}
+
 static void test_two_chars_to_byte() {
  int byte;
  pinMode_ncalled = 0;
@@ -57,6 +62,7 @@ void test_shift_in_bit() {
 }
 
 int main(void) {
+ test_init_easyinput();
  test_two_chars_to_byte();
  test_get_bit();
  test_shift_out_bit();

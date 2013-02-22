@@ -12,6 +12,12 @@
 #define DATA   9
 #define BUSY  10
 
+void init_easyinput() {
+ pinMode(CLOCK, OUTPUT);
+ pinMode(DATA, INPUT);
+ pinMode(BUSY, INPUT);
+}
+
 int two_chars_to_byte(char * two_chars) {
  int byte;
 

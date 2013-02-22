@@ -1,4 +1,6 @@
 
+void init_easyinput();
+
 int two_chars_to_byte(char * two_chars);
 
 int get_bit(int byte, int n);
