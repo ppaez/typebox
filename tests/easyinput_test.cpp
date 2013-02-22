@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <inttypes.h>
 
-#include "easyinput.h"
+#include "../easyinput.h"
 
 int pinMode_ncalled = 0;
 int digitalWrite_ncalled = 0;

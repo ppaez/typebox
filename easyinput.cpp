@@ -3,7 +3,7 @@
 #include "easyinput.h"
 
 #ifdef TEST
-#  include "easyinput_test.h"
+#  include "tests/easyinput_test.h"
 #else
 #  include <Arduino.h>
 #endif
