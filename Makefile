@@ -1,7 +1,8 @@
-all:
-	gcc -Wall easyinput.cpp -o easyinput -I /usr/share/arduino/hardware/arduino/cores/arduino/ -I /usr/lib/avr/include -I /usr/share/arduino/hardware/arduino/variants/standard
+ARDUINO_DIR   = /usr/share/arduino
+ARDMK_DIR     = /usr
+AVR_TOOLS_DIR = /usr
 
-test:
-	gcc -D TEST -Wall easyinput_test.cpp easyinput.cpp -o easyinput_test && ./easyinput_test
+BOARD_TAG    = uno
+ARDUINO_PORT = /dev/ttyACM0
 
-.PHONY:	all test
+include /usr/share/arduino/Arduino.mk
