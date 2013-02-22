@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#include "control.h"
+#include "easyinput.h"
 
 #ifdef TEST
-#  include "control_test.h"
+#  include "easyinput_test.h"
 #else
 #  include <Arduino.h>
 #endif
