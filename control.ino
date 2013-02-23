@@ -27,12 +27,12 @@ void loop() {
   Serial.println(chars[3]);
 
   int key_byte, modifier_byte;
-  char key_chars[2] = "";
+  char key_chars[3] = "";
   key_chars[0] = chars[2];
   key_chars[1] = chars[3];
   key_chars[2] = '\0';
 
-  char modifier_chars[2] = "";
+  char modifier_chars[3] = "";
   modifier_chars[0] = chars[0];
   modifier_chars[1] = chars[1];
   modifier_chars[2] = '\0';
