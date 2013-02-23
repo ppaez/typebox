@@ -37,9 +37,18 @@ void loop() {
   modifier_chars[1] = chars[1];
   modifier_chars[2] = '\0';
 
+  Serial.print("key_chars: ");
+  Serial.println(key_chars);
   key_byte = two_chars_to_byte(key_chars);
+
+  Serial.print("modifier_chars: ");
+  Serial.println(modifier_chars);
   modifier_byte = two_chars_to_byte(modifier_chars);
 
+  Serial.print("key_byte: ");
+  Serial.println(key_byte);
+  Serial.print("modifier_byte: ");
+  Serial.println(modifier_byte);
   transfer_packet(key_byte, modifier_byte);
 
   delay(1000);
