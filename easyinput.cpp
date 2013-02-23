@@ -36,18 +36,18 @@ void shift_out_bit( int bit) {
  Serial.print("shift_out_bit: ");
  Serial.println(bit);
  while (digitalRead(BUSY)) {
-  delay(1);
+  delayMicroseconds(5);
  }
  pinMode(DATA, OUTPUT);
  digitalWrite(DATA, bit);
- delay(1);
+ delayMicroseconds(5);
  digitalWrite(CLOCK, LOW);
  while (!digitalRead(BUSY)) {
-  delay(1);
+  delayMicroseconds(5);
  }
  digitalWrite(CLOCK, HIGH);
  while (digitalRead(BUSY)) {
-  delay(1);
+  delayMicroseconds(5);
  }
  pinMode(DATA, INPUT);
  digitalWrite(DATA, LOW);
@@ -57,17 +57,17 @@ int shift_in_bit() {
  int bit;
  Serial.println("shift_in_bit");
  while (digitalRead(BUSY)) {
-  delay(1);
+  delayMicroseconds(5);
  }
  pinMode(DATA, INPUT);
  digitalWrite(CLOCK, LOW);
  while (!digitalRead(BUSY)) {
-  delay(1);
+  delayMicroseconds(5);
  }
  bit = digitalRead(DATA);
  digitalWrite(CLOCK, HIGH);
  while (digitalRead(BUSY)) {
-  delay(1);
+  delayMicroseconds(5);
  }
  return bit;
 }
