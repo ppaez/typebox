@@ -44,9 +44,6 @@ void shift_out_bit( int bit) {
   delayMicroseconds(5);
  }
  digitalWrite(CLOCK, HIGH);
- while (digitalRead(BUSY)) {
-  delayMicroseconds(5);
- }
 }
 
 int shift_in_bit() {
