@@ -30,6 +30,8 @@ int get_bit(int byte, int n) {
 }
 
 void shift_out_bit( int bit) {
+ Serial.print("shift_out_bit: ");
+ Serial.println(bit);
  while (digitalRead(BUSY)) {
   delay(1);
  }
@@ -50,6 +52,7 @@ void shift_out_bit( int bit) {
 
 int shift_in_bit() {
  int bit;
+ Serial.println("shift_in_bit");
  while (digitalRead(BUSY)) {
   delay(1);
  }
