@@ -31,10 +31,11 @@ void test_init_easyinput() {
 }
 
 static void test_two_chars_to_byte() {
+ char two_chars[3] = "31";
  int byte;
  pinMode_ncalled = 0;
  digitalWrite_ncalled = 0;
- byte = two_chars_to_byte("31");
+ byte = two_chars_to_byte(two_chars);
  assert( byte == 49 && "test_two_chars_to_byte" );
 }
 
