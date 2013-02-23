@@ -16,6 +16,9 @@ void init_easyinput() {
  pinMode(CLOCK, OUTPUT);
  pinMode(DATA, INPUT);
  pinMode(BUSY, INPUT);
+ digitalWrite(CLOCK, HIGH);
+ digitalWrite(DATA, LOW);
+ digitalWrite(BUSY, LOW);
 }
 
 int two_chars_to_byte(char * two_chars) {
