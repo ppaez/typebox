@@ -9,7 +9,7 @@ void setup() {
 
 void loop() {
   char value;
-  char chars[3];
+  char chars[4];
   int nchars = 0;
 
   while (nchars < 4) {
