@@ -25,6 +25,9 @@ int digitalRead(uint8_t pin) {
 void delay(unsigned long miliseconds) {
 }
 
+void delayMicroseconds(unsigned long microseconds) {
+}
+
 void test_init_easyinput() {
  init_easyinput();
  assert( 1 && "test_init_easyinput");

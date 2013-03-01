@@ -12,3 +12,4 @@ void digitalWrite(uint8_t pin, uint8_t value);
 int digitalRead(uint8_t pin);
 
 void delay(unsigned long);
+void delayMicroseconds(unsigned long);
