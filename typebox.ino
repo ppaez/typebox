@@ -52,6 +52,6 @@ void loop() {
   Serial.println(key_byte, BIN);
   transfer_packet(key_byte, modifier_byte);
 
-  delay(1000);
+  delay(100);
   digitalWrite(ledPin, LOW);
 }

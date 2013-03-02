@@ -38,7 +38,7 @@ void shift_out_bit( int bit) {
  }
  pinMode(DATA, OUTPUT);
  digitalWrite(DATA, bit);
- delayMicroseconds(5);
+ delayMicroseconds(10);
  digitalWrite(CLOCK, LOW);
  while (!digitalRead(BUSY)) {
   delayMicroseconds(5);
