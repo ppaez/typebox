@@ -3,7 +3,7 @@
 int ledPin = 13;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode(ledPin, OUTPUT);
   init_easyinput();
 }
@@ -18,7 +18,7 @@ void loop() {
             value = Serial.read();
             chars[nchars++] = value;
         }
-    delay(100);
+    delay(50);
   }
 
   digitalWrite(ledPin, HIGH);
@@ -52,6 +52,6 @@ void loop() {
   Serial.println(key_byte, BIN);
   transfer_packet(key_byte, modifier_byte);
 
-  delay(100);
+  delay(50);
   digitalWrite(ledPin, LOW);
 }
