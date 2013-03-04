@@ -3,6 +3,9 @@
 import serial
 import time
 import sys
+import string
+
+uppercase_letters = string.ascii_uppercase + '~!@#$%^&*()_+<>?:"{}|'
 
 codes = \
 {'!': '21',
@@ -154,7 +157,12 @@ while line:
             letter = '<CR>'
         code = codes[letter]
         print('{:1} = '.format( letter), end='')
-        fourchars = '00' + code
+
+        # shift is needed for upper case
+        two_modifier_chars = '00'
+        if letter in uppercase_letters:
+            two_modifier_chars = '02'
+        fourchars = two_modifier_chars + code
         # send
         byteswritten = ser.write(fourchars.encode())
         # wait for response
