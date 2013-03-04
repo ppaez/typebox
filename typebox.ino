@@ -21,8 +21,6 @@ void loop() {
     delay(50);
   }
 
-  digitalWrite(ledPin, HIGH);
-
   int key_byte, modifier_byte;
   char key_chars[3] = "";
   key_chars[0] = chars[2];
@@ -48,8 +46,8 @@ void loop() {
   Serial.print(modifier_byte, BIN);
   Serial.print(" ");
   Serial.println(key_byte, BIN);
-  transfer_packet(key_byte, modifier_byte);
 
-  delay(50);
+  digitalWrite(ledPin, HIGH);
+  transfer_packet(key_byte, modifier_byte);
   digitalWrite(ledPin, LOW);
 }
