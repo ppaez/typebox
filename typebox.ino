@@ -18,7 +18,6 @@ void loop() {
             value = Serial.read();
             chars[nchars++] = value;
         }
-    delay(50);
   }
 
   int key_byte, modifier_byte;
