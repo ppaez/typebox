@@ -8,32 +8,7 @@ import string
 uppercase_letters = string.ascii_uppercase + '~!@#$%^&*()_+<>?:"{}|'
 
 codes = \
-{'!': '21',
- '#': '23',
- '$': '24',
- '%': '25',
- '&': '26',
- '(': '28',
- ')': '29',
- '*': '2A',
- '+': '2B',
- ',': '2C',
- '-': '2D',
- '.': '2E',
- '/': '2F',
- '0': '30',
- '1': '31',
- '2': '32',
- '3': '33',
- '4': '34',
- '5': '35',
- '6': '36',
- '7': '37',
- '8': '38',
- '9': '39',
- ':': '3A',
- ';': '3B',
- '<': '3C',
+ {'<tab>': '09',
  '<CR>': '0D',
  '<Caps Lock>': '10',
  '<Num Lock>': '0F',
@@ -52,24 +27,9 @@ codes = \
  '<page up>': '1E',
  '<print screen>': '0C',
  '<right arrow>': '1A',
- ' ': '20',
- '<tab>': '09',
  '<up arrow>': '18',
  '<windows>': '0A',
- '=': '3D',
- '>': '3E',
- '?': '3F',
- '@': '40',
- 'A': '41',
- 'B': '42',
- 'C': '43',
- 'D': '44',
- 'E': '45',
- 'F': '46',
  'F1': '01',
- 'F10': '15',
- 'F11': '16',
- 'F12': '17',
  'F2': '02',
  'F3': '03',
  'F4': '04',
@@ -78,65 +38,10 @@ codes = \
  'F7': '12',
  'F8': '13',
  'F9': '14',
- 'G': '47',
- 'H': '48',
- 'HID': '80',
- 'I': '49',
- 'J': '4A',
- 'K': '4B',
- 'L': '4C',
- 'M': '4D',
- 'N': '4E',
- 'O': '4F',
- 'P': '50',
- 'Q': '51',
- 'R': '52',
- 'S': '53',
- 'T': '54',
- 'U': '55',
- 'V': '56',
- 'W': '57',
- 'X': '58',
- 'Y': '59',
- 'Z': '5A',
- '[': '5B',
- '\\': '5C',
- ']': '5D',
- '^': '5E',
- '_': '5F',
- '`': '60',
- 'a': '61',
- 'b': '62',
- 'c': '63',
- 'd': '64',
- 'e': '65',
- 'f': '66',
- 'g': '67',
- 'h': '68',
- 'i': '69',
- 'j': '6A',
- 'k': '6B',
- 'l': '6C',
- 'm': '6D',
- 'n': '6E',
- 'o': '6F',
- 'p': '70',
- 'q': '71',
- 'r': '72',
- 's': '73',
- 't': '74',
- 'u': '75',
- 'v': '76',
- 'w': '77',
- 'x': '78',
- 'y': '79',
- 'z': '7A',
- '{': '7B',
- '|': '7C',
- '}': '7D',
- '~': '7E',
- '\'': '27',
- '"': '22'}
+ 'F10': '15',
+ 'F11': '16',
+ 'F12': '17',
+ 'HID': '80'}
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
 time.sleep(2)
@@ -152,16 +57,27 @@ while line:
         line = file.readline()
     else:
         line = input()
+
     for letter in line:
-        if letter == '\n':
-            letter = '<CR>'
-        code = codes[letter]
+        code = ord(letter)
+
+        # send '*' if invalid
+        if 31 < code < 128:
+            code = hex(code)[2:]
+        elif letter == '\n':
+            code = '0D'
+        elif letter == '\t':
+            code = '09'
+        else:
+            code = hex(ord('*'))[2:]
         print('{:1} = '.format( letter), end='')
 
         # shift is needed for upper case
         two_modifier_chars = '00'
         if letter in uppercase_letters:
             two_modifier_chars = '02'
+
+        # four hex characters
         fourchars = two_modifier_chars + code
         # send
         byteswritten = ser.write(fourchars.encode())
