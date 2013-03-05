@@ -43,53 +43,56 @@ codes = \
  'F12': '17',
  'HID': '80'}
 
-ser = serial.Serial('/dev/ttyACM0', 9600)
-time.sleep(2)
 
-if len(sys.argv) > 1:
-    file = open(sys.argv[1])
-else:
-    file = ''
+if __name__ == '__main__':
 
-line = True
-while line:
-    if file:
-        line = file.readline()
+    ser = serial.Serial('/dev/ttyACM0', 9600)
+    time.sleep(2)
+
+    if len(sys.argv) > 1:
+        file = open(sys.argv[1])
     else:
-        line = input()
+        file = ''
 
-    for letter in line:
-        code = ord(letter)
-
-        # send '*' if invalid
-        if 31 < code < 128:
-            code = hex(code)[2:]
-        elif letter == '\n':
-            code = '0D'
-        elif letter == '\t':
-            code = '09'
+    line = True
+    while line:
+        if file:
+            line = file.readline()
         else:
-            code = hex(ord('*'))[2:]
-        print('{:1} = '.format( letter), end='')
+            line = input()
 
-        # shift is needed for upper case
-        two_modifier_chars = '00'
-        if letter in uppercase_letters:
-            two_modifier_chars = '02'
+        for letter in line:
+            code = ord(letter)
 
-        # four hex characters
-        fourchars = two_modifier_chars + code
-        # send
-        byteswritten = ser.write(fourchars.encode())
-        # wait for response
-        while not ser.inWaiting():
-            pass
-        result = ''
-        while '\n' not in result:
-            byte = ser.read()
-            try:
-                byte = byte.decode()
-            except:
-                byte = '*'
-            result += byte
-        print(result[:-1])
+            # send '*' if invalid
+            if 31 < code < 128:
+                code = hex(code)[2:]
+            elif letter == '\n':
+                code = '0D'
+            elif letter == '\t':
+                code = '09'
+            else:
+                code = hex(ord('*'))[2:]
+            print('{:1} = '.format( letter), end='')
+
+            # shift is needed for upper case
+            two_modifier_chars = '00'
+            if letter in uppercase_letters:
+                two_modifier_chars = '02'
+
+            # four hex characters
+            fourchars = two_modifier_chars + code
+            # send
+            byteswritten = ser.write(fourchars.encode())
+            # wait for response
+            while not ser.inWaiting():
+                pass
+            result = ''
+            while '\n' not in result:
+                byte = ser.read()
+                try:
+                    byte = byte.decode()
+                except:
+                    byte = '*'
+                result += byte
+            print(result[:-1])
