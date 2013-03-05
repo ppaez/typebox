@@ -44,6 +44,43 @@ codes = {
  'hid': '80'}
 
 
+def getcode(token):
+    '''Return the two-character code for token.
+
+    token can be a key or a key name.'''
+
+    if len(token) == 1:
+        code = ord(token)
+
+        if 31 < code < 128:
+            code = hex(code)[2:]
+        elif letter == '\n':
+            code = '0D'
+        elif letter == '\t':
+            code = '09'
+        else:
+            # undefined
+            code = hex(ord('*'))[2:]
+    else:
+        code = codes.get(token, '')
+
+    return code
+
+
+def getmodifiers(token):
+    '''Return the two-character code for token.
+
+    token can be a key or a key name.'''
+
+    two_modifier_chars = '00'
+
+    if len(token) == 1:
+        if token in uppercase_letters:
+            two_modifier_chars = '02'
+
+    return two_modifier_chars
+
+
 if __name__ == '__main__':
 
     ser = serial.Serial('/dev/ttyACM0', 9600)
