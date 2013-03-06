@@ -43,6 +43,15 @@ codes = {
  'f12': '17',
  'hid': '80'}
 
+modifier_bit = {
+    'controll': 1,
+    'shiftl': 2,
+    'altl': 4,
+    'winl': 8,
+    'controlr': 16,
+    'shiftr': 32,
+    'altr': 64,
+    'winr': 128}
 
 def getcode(token):
     '''Return the two-character code for token.
@@ -77,6 +86,10 @@ def getmodifiers(token):
     if len(token) == 1:
         if token in uppercase_letters:
             two_modifier_chars = '02'
+    else:
+        chars = hex(modifier_bit.get(token, 0))[2:]
+        if len(chars) == 1: chars = '0' + chars
+        two_modifier_chars = chars
 
     return two_modifier_chars
 

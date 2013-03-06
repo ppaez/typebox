@@ -33,3 +33,8 @@ class GetModifier(unittest.TestCase):
         from type import getmodifiers
 
         self.assertEqual('02', getmodifiers(':'))
+
+    def test_modifier(self):
+        from type import getmodifiers
+
+        self.assertEqual('01', getmodifiers('controll'))
