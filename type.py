@@ -94,6 +94,37 @@ def getmodifiers(token):
     return two_modifier_chars
 
 
+def parse_line(line):
+    '''Return a list of name groups.
+
+    Each group is a list with one or
+    more names.'''
+
+    name = ''
+    groups = []
+    state = 0
+    for char in line:
+        if state == 0:
+            if char == '{':
+                state = 1
+                # create group and name
+                groups.append( [''] )
+            else:
+                # create group and name
+                groups.append( [char] )
+        else:
+            if char == '}':
+                state = 0
+            elif char == '-':
+                # create name
+                groups[-1].append('')
+            else:
+                # add to name
+                groups[-1][-1] += char
+
+    return groups
+
+
 if __name__ == '__main__':
 
     ser = serial.Serial('/dev/ttyACM0', 9600)

@@ -38,3 +38,32 @@ class GetModifier(unittest.TestCase):
         from type import getmodifiers
 
         self.assertEqual('01', getmodifiers('controll'))
+
+
+class ParseLine(unittest.TestCase):
+
+    def test_key(self):
+        from type import parse_line
+
+        self.assertEqual( [['a']], parse_line('a'))
+
+    def test_name(self):
+        from type import parse_line
+
+        self.assertEqual( [['name']], parse_line('{name}'))
+
+    def test_two_names(self):
+        from type import parse_line
+
+        self.assertEqual( [['mod','key']], parse_line('{mod-key}'))
+
+    def test_three_names(self):
+        from type import parse_line
+
+        self.assertEqual( [['mod1', 'mod2', 'key']], parse_line('{mod1-mod2-key}'))
+
+    def test_two_groups(self):
+        from type import parse_line
+
+        self.assertEqual( [['name1'], ['a'], ['b'], ['name2']],
+                          parse_line('{name1}ab{name2}'))
