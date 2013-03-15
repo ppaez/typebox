@@ -39,8 +39,9 @@ You need:
 - `Arduino Uno`__
 - `Easy Input chip`__, by Radovan Robotics, 24 DIP package
 - Small protoboard
-- USB plug
+- USB type B plug
 - 1.5K ohm 1/4W resistor
+- 470 ohm 1/4W resistor, 3x
 
 The Arduino development software is also required,
 to compile and download the program into the Arduino.
@@ -57,11 +58,41 @@ Hardware
 Plug the Easy Input chip into the protoboard.  Connect
 as shown:
 
-TBD
+.. image:: protoboard.png
+   :width: 950
+   :height: 553
 
 Four wires connect between the protoboard and the Arduino
-ground, DO8, D09 and DO10 pins.
+ground, DO8, D09 and DO10 pins:
 
++--------------+-------------+-----------------+-----------------+
+| Arduino pin  |  Mode       | Easy Input pin  | Description     |
++--------------+-------------+-----------------+-----------------+
+| DIGITAL8     |  Output     | ~CLOCK          | Arduino tells   |
+|              |             |                 | the Easy Input  |
+|              |             |                 | chip that a data|
+|              |             |                 | bit is ready in |
+|              |             |                 | DATA0           |
+|              |             |                 |                 |
++--------------+-------------+-----------------+-----------------+
+| DIGITAL9     |  Output     | DATA0           | Arduino sends a |
+|              |             |                 | bit of data to  |
+|              |             |                 | the Easy Input  |
+|              |             |                 | chip            |
+|              |             |                 |                 |
++--------------+-------------+-----------------+-----------------+
+| DIGITAL10    |  Input      | BUSY            | Easy Input chip |
+|              |             |                 | tells the       |
+|              |             |                 | Arduino that    |
+|              |             |                 | data bit has    |
+|              |             |                 | been read,      |
+|              |             |                 | transmision can |
+|              |             |                 | continue        |
+|              |             |                 |                 |
++--------------+-------------+-----------------+-----------------+
+| GND          |             |                 |                 |
+|              |             |                 |                 |
++--------------+-------------+-----------------+-----------------+
 
 Software
 ~~~~~~~~
